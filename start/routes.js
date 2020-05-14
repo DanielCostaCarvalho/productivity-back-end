@@ -21,3 +21,4 @@ Route.get('/', () => {
 })
 
 Route.post('users', 'UserController.store')
+Route.post('login', 'SessionController.store')
