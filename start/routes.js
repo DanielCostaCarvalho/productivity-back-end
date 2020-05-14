@@ -19,3 +19,5 @@ const Route = use('Route')
 Route.get('/', () => {
   return { ok: true }
 })
+
+Route.post('users', 'UserController.store')
