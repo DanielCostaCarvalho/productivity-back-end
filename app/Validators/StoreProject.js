@@ -6,7 +6,8 @@ class StoreProject {
       name: 'required|string|max:80',
       description: 'string',
       initialDate: 'date',
-      finalDate: 'date'
+      finalDate: 'date',
+      scope: 'required|in:estudo,trabalho,pessoal'
     }
   }
 }
