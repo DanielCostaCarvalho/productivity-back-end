@@ -14,7 +14,7 @@ test('make sure that a valid user can log in', async ({ assert, client }) => {
   assert.exists(response.body.token)
 })
 
-test('make sure that do not create a user when duplicated arguments are provided', async ({ client }) => {
+test('make sure that do not log in when invalid arguments are provided', async ({ client }) => {
   const user = {username: 'invalid name', password: '123456', email: 'invalid@mail'}
   const response = await client.post('/login').send(user).end()
 
