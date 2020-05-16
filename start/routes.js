@@ -21,7 +21,14 @@ Route.get('/', () => {
 })
 
 Route.post('users', 'UserController.store')
+
 Route.post('login', 'SessionController.store')
-Route.post('projects', 'ProjectController.store')
-  .validator('StoreProject')
-Route.get('projects', 'ProjectController.index')
+
+Route.group(() => {
+  Route.post('projects', 'ProjectController.store')
+    .validator('StoreProject')
+  Route.get('projects', 'ProjectController.index')
+
+  Route.post('projects/:project_id/activities', 'ActivityController.store')
+    .validator('StoreActivity')
+}).middleware(['auth'])
