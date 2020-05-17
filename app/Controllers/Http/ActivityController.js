@@ -5,7 +5,7 @@ const Activity = use('App/Models/Activity')
 
 class ActivityController {
   async store({ request, response, auth, params }) {
-    const data = request.only(['description', 'initial_date', 'final_date'])
+    const data = request.only(['description', 'initial_date', 'final_date', 'alert_date', 'priority'])
 
     const user = await auth.getUser()
 
