@@ -7,7 +7,7 @@ class StoreProject {
       description: 'string',
       initial_date: 'date',
       final_date: 'date',
-      scope: 'required|in:estudo,trabalho,pessoal'
+      scope: 'required|in:study,work,personal'
     }
   }
 }
