@@ -11,6 +11,7 @@ class ActivitySchema extends Schema {
       table.string('description', 100)
       table.datetime('initial_date')
       table.datetime('final_date')
+      table.enu('status', ['to do','stopped' ,'doing', 'done']).notNullable().defaultTo('to do')
       table.timestamps()
     })
   }
