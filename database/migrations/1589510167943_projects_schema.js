@@ -13,6 +13,7 @@ class ProjectsSchema extends Schema {
       table.text('description')
       table.date('initial_date')
       table.date('final_date')
+      table.bool('active').defaultTo(true)
       table.timestamps()
     })
   }
