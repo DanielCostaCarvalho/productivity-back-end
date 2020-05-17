@@ -9,7 +9,7 @@ class ProjectsSchema extends Schema {
       table.increments()
       table.integer('user_id').unsigned().references('id').inTable('users')
       table.string('name', 80)
-      table.enu('scope', ['trabalho', 'pessoal', 'estudo']).notNullable()
+      table.enu('scope', ['work', 'personal', 'study']).notNullable()
       table.text('description')
       table.date('initial_date')
       table.date('final_date')
