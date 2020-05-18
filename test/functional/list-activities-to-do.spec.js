@@ -9,14 +9,14 @@ const Activity = use('App/Models/Activity')
 trait('Test/ApiClient')
 trait('Auth/Client')
 
-test('make sure return activities from a project', async ({ assert, client }) => {
-  const user = await User.create({ username: 'test6', password: '123456', email: 'fake6@mail' })
+test('make sure return activities to do from a project', async ({ assert, client }) => {
+  const user = await User.create({ username: 'test7', password: '123456', email: 'fake7@mail' })
 
   const project = await Project.create({ user_id: user.id, name: 'test', description: 'test test', initial_date: '2020-01-01', final_date: '2020-01-01', scope: 'work' })
 
-  const activity = await Activity.create({ description: 'test', alert_date: '2020-01-01', initial_date: '2020-01-01', final_date: '2020-01-01', project_id: project.id })
+  const activity = await Activity.create({ description: 'test', alert_date: '2020-01-01', initial_date: '2020-01-01', final_date: '2020-01-01', project_id: project.id, status: 'to do' })
 
-  const response = await client.get(`/projects/${project.id}/activities`)
+  const response = await client.get(`/projects/${project.id}/activities/toDo`)
     .loginVia(user)
     .end()
 
