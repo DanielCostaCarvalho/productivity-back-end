@@ -12,7 +12,7 @@ class ActivitySchema extends Schema {
       table.datetime('initial_date').notNullable().defaultTo(new Date())
       table.datetime('final_date').notNullable()
       table.datetime('alert_date').notNullable()
-      table.enu('status', ['to do','stopped' ,'doing', 'done']).notNullable().defaultTo('to do')
+      table.enu('status', ['to do','stopped', 'paused' ,'doing', 'done']).notNullable().defaultTo('to do')
       table.enu('priority', ['low','medium','high']).notNullable().defaultTo('low')
       table.timestamps()
     })

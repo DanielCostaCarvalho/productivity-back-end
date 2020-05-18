@@ -34,6 +34,7 @@ Route.group(() => {
   Route.get('projects/:project_id/activities/done', 'ActivityDoneController.index')
   Route.get('projects/:project_id/activities/doing', 'ActivityDoingController.index')
   Route.get('projects/:project_id/activities/stopped', 'ActivityStoppedController.index')
+  Route.get('projects/:project_id/activities/paused', 'ActivityPausedController.index')
   Route.post('projects/:project_id/activities', 'ActivityController.store')
     .validator('StoreActivity')
 }).middleware(['auth'])
