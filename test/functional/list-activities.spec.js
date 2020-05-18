@@ -21,5 +21,5 @@ test('make sure return activities from a project', async ({ assert, client }) =>
     .end()
 
   response.assertStatus(200)
-  assert.equal(response.body.data[0].id, activity.id)
+  assert.equal(response.body.toDo.data[0].id, activity.id)
 })

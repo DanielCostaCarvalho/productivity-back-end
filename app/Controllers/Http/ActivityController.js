@@ -37,11 +37,27 @@ class ActivityController {
       return response.forbidden('Cannot view activities for others users projects')
     }
 
-    const activities = await Activity.query()
-      .where('project_id', '=', project_id)
+    const stopped = await Activity.query()
+      .where({project_id, status: 'stopped'})
+      .orderBy('alert_date')
       .paginate(page)
 
-    return activities
+    const toDo = await Activity.query()
+      .where({project_id, status: 'to do'})
+      .orderBy('alert_date')
+      .paginate(page)
+
+    const done = await Activity.query()
+      .where({project_id, status: 'done'})
+      .orderBy('alert_date')
+      .paginate(page)
+
+    const doing = await Activity.query()
+      .where({project_id, status: 'doing'})
+      .orderBy('alert_date')
+      .paginate(page)
+
+    return { toDo, doing, stopped, done }
   }
 }
 
