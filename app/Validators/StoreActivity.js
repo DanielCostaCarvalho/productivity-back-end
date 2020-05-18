@@ -7,7 +7,7 @@ class StoreActivity {
       initial_date: 'date',
       final_date: 'required|date',
       alert_date: 'required|date',
-      priority: 'required|in:study,work,personal'
+      priority: 'in:low,medium,high'
     }
   }
 }
