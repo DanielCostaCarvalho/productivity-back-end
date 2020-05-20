@@ -8,8 +8,8 @@ class Activity extends Model {
     return this.belongsTo('App/Models/Project', 'project_id')
   }
 
-  activities() {
-    return this.hasMany('App/Models/Activity')
+  owner() {
+    return this.belongsTo('App/Models/User', 'user_id')
   }
 }
 

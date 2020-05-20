@@ -29,6 +29,7 @@ Route.group(() => {
     .validator('StoreProject')
   Route.get('projects', 'ProjectController.index')
 
+  Route.get('activities', 'AllActivitiesController.index')
   Route.get('projects/:project_id/activities', 'ActivityController.index')
   Route.get('projects/:project_id/activities/toDo', 'ActivityToDoController.index')
   Route.get('projects/:project_id/activities/done', 'ActivityDoneController.index')

@@ -14,7 +14,7 @@ test('make sure return activities stopped from a project', async ({ assert, clie
 
   const project = await Project.create({ user_id: user.id, name: 'test', description: 'test test', initial_date: '2020-01-01', final_date: '2020-01-01', scope: 'work' })
 
-  const activity = await Activity.create({ description: 'test', alert_date: '2020-01-01', initial_date: '2020-01-01', final_date: '2020-01-01', project_id: project.id, status: 'stopped' })
+  const activity = await Activity.create({ description: 'test', alert_date: '2020-01-01', initial_date: '2020-01-01', final_date: '2020-01-01', project_id: project.id, status: 'stopped', user_id: user.id })
 
   const response = await client.get(`/projects/${project.id}/activities/stopped`)
     .loginVia(user)

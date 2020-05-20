@@ -18,6 +18,7 @@ class ActivityController {
     }
 
     data['project_id'] = project_id
+    data['user_id'] = user.id
 
     const activity = await Activity.create(data)
 

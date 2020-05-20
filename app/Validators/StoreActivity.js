@@ -5,7 +5,7 @@ class StoreActivity {
     return {
       description: 'required|string',
       initial_date: 'date',
-      final_date: 'required|date',
+      final_date: 'date',
       alert_date: 'required|date',
       priority: 'in:low,medium,high'
     }

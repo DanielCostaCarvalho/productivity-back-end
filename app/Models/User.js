@@ -38,6 +38,10 @@ class User extends Model {
     return this.hasMany('App/Models/Token')
   }
 
+  activities() {
+    return this.hasMany('App/Models/Activity')
+  }
+
   projects() {
     return this.hasMany('App/Models/Project')
   }

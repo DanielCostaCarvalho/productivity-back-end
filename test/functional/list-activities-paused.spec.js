@@ -14,7 +14,7 @@ test('make sure return activities paused from a project', async ({ assert, clien
 
   const project = await Project.create({ user_id: user.id, name: 'test', description: 'test test', initial_date: '2020-01-01', final_date: '2020-01-01', scope: 'work' })
 
-  const activity = await Activity.create({ description: 'test', alert_date: '2020-01-01', initial_date: '2020-01-01', final_date: '2020-01-01', project_id: project.id, status: 'paused' })
+  const activity = await Activity.create({ description: 'test', alert_date: '2020-01-01', initial_date: '2020-01-01', final_date: '2020-01-01', project_id: project.id, status: 'paused', user_id: user.id })
 
   const response = await client.get(`/projects/${project.id}/activities/paused`)
     .loginVia(user)
