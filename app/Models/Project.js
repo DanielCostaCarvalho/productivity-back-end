@@ -4,6 +4,10 @@
 const Model = use('Model')
 
 class Project extends Model {
+  interruptions() {
+    return this.hasMany('App/Models/Interruption')
+  }
+
   activities() {
     return this.hasMany('App/Models/Activity')
   }

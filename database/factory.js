@@ -29,6 +29,13 @@ Factory.blueprint('App/Models/Activity', (faker) => {
   }
 })
 
+Factory.blueprint('App/Models/Interruption', (faker) => {
+  return {
+    description: faker.string(),
+    initial_date: new Date(new Date().getDate() + 1)
+  }
+})
+
 Factory.blueprint('App/Models/Project', (faker) => {
   return {
     name: faker.string(),

@@ -4,6 +4,10 @@
 const Model = use('Model')
 
 class Activity extends Model {
+  interruptions() {
+    return this.hasMany('App/Models/Interruption')
+  }
+
   partOf() {
     return this.belongsTo('App/Models/Project', 'project_id')
   }
