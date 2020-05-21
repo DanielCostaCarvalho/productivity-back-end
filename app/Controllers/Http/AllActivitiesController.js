@@ -20,8 +20,6 @@ class AllActivitiesController {
       .orderBy('alert_date')
       .paginate(page)
 
-      //.whereNull('final_date')
-      //.whereNot({ status: 'doing' })
     return data
   }
 }
