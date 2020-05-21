@@ -10,7 +10,7 @@ class InterruptionSchema extends Schema {
       table.integer('user_id').unsigned().references('id').inTable('users').notNullable()
       table.integer('activity_id').unsigned().references('id').inTable('activities').notNullable()
       table.text('description').notNullable()
-      table.date('initial_date').notNullable()
+      table.date('initial_date').notNullable().defaultTo(new Date())
       table.date('final_date')
       table.enu('type', ['stop','pause']).notNullable()
       table.increments()

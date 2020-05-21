@@ -39,4 +39,5 @@ Route.group(() => {
   Route.post('projects/:project_id/activities', 'ActivityController.store')
     .validator('StoreActivity')
   Route.get('projects/:project_id/interruptions', 'InterruptionController.index')
+  Route.post('projects/:project_id/activities/:activity_id/interruptions', 'InterruptionController.store')
 }).middleware(['auth'])
