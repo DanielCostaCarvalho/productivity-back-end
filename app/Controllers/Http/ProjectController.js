@@ -38,6 +38,8 @@ class ProjectController {
 
     project.merge(data)
 
+    await project.save()
+
     return project
   }
 

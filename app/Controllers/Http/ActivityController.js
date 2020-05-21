@@ -87,6 +87,8 @@ class ActivityController {
 
     activity.merge(data)
 
+    activity.save()
+
     return activity
   }
 

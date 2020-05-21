@@ -10,7 +10,7 @@ class ActivitySchema extends Schema {
       table.integer('project_id').unsigned().references('id').inTable('projects').notNullable()
       table.integer('user_id').unsigned().references('id').inTable('users').notNullable()
       table.string('description', 100).notNullable()
-      table.datetime('initial_date').notNullable().defaultTo(new Date())
+      table.datetime('initial_date')
       table.datetime('final_date')
       table.datetime('alert_date').notNullable()
       table.enu('status', ['to do','stopped', 'paused' ,'doing', 'done']).notNullable().defaultTo('to do')
