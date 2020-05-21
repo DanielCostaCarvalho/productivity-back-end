@@ -13,7 +13,7 @@ test('make sure create an activity when valid arguments are provided', async ({ 
 
   const project = await Project.create({ user_id: user.id, name: 'test', description: 'test test', initial_date: '2020-01-01', final_date: '2020-01-01', scope: 'work' })
 
-  const activity = { description: 'test', initial_date: '2020-01-01', alert_date: '2020-01-01', final_date: '2020-01-01' }
+  const activity = { description: 'test', initial_date: '2020-01-01', alert_date: '2020-01-01' }
 
   const response = await client.post(`/projects/${project.id}/activities`)
     .loginVia(user)

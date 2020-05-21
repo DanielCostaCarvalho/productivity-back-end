@@ -5,7 +5,7 @@ const Activity = use('App/Models/Activity')
 
 class ActivityController {
   async store({ request, response, auth, params }) {
-    const data = request.only(['description', 'initial_date', 'final_date', 'alert_date', 'priority'])
+    const data = request.only(['description', 'initial_date', 'alert_date', 'priority'])
 
     const user = await auth.getUser()
 
@@ -65,6 +65,31 @@ class ActivityController {
 
     return { toDo, doing, stopped, paused, done }
   }
+
+  async update({ request, response, auth, params }) {
+    const data = request.only(['description', 'initial_date', 'final_date', 'alert_date', 'priority'])
+
+    const user = await auth.getUser()
+
+    const { project_id, activity_id } = params
+
+    const project = await Project.findOrFail(project_id)
+
+    const activity = await Activity.findOrFail(activity_id)
+
+    if (project.user_id !== user.id) {
+      return response.forbidden('Cannot update an activity for others users projects')
+    }
+
+    if(activity.project_id != project_id){
+      return response.badRequest('This activity is not from this project')
+    }
+
+    activity.merge(data)
+
+    return activity
+  }
+
 }
 
 module.exports = ActivityController
