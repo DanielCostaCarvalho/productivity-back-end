@@ -18,7 +18,7 @@ class ProjectController {
 
     const user = await auth.getUser()
 
-    const projects = await Project.query().where('user_id', user.id).paginate(page)
+    const projects = await Project.query().where({user_id: user.id, active: true}).paginate(page)
 
     return projects
   }
@@ -37,6 +37,24 @@ class ProjectController {
     }
 
     project.merge(data)
+
+    await project.save()
+
+    return project
+  }
+
+  async inactive({ auth, params }) {
+    const user = await auth.getUser()
+
+    const { project_id } = params
+
+    const project = await Project.findOrFail(project_id)
+
+    if (project.user_id !== user.id) {
+      return response.forbidden('Cannot create an activity for others users projects')
+    }
+
+    project.merge({ active: false })
 
     await project.save()
 
