@@ -77,11 +77,7 @@ class InterruptionController {
       return response.badRequest('This activity is not from this project')
     }
 
-    const interruption = await Interruption.findOrFail(interruption_id)
-
-    if(interruption.activity_id != activity_id){
-      return response.badRequest('This interruption is not from this activity')
-    }
+    const interruption = await activity.interruptions().last()
 
     activity.status = 'doing'
 

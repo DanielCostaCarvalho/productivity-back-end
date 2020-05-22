@@ -23,7 +23,7 @@ test('make sure set the final date of interruption when finish', async ({ assert
 
   const interruption = await Interruption.create({ description: 'test', type: 'stop', project_id: project.id, user_id: user.id, activity_id: activity.id})
 
-  const response = await client.put(`/projects/${project.id}/activities/${activity.id}/interruptions/${interruption.id}/finish`)
+  const response = await client.put(`/projects/${project.id}/activities/${activity.id}/interruptions/finish`)
     .loginVia(user)
     .end()
 
