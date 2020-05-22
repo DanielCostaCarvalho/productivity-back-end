@@ -92,6 +92,54 @@ class ActivityController {
     return activity
   }
 
+  async start({auth, params, response}){
+    const user = await auth.getUser()
+
+    const { project_id, activity_id } = params
+
+    const project = await Project.findOrFail(project_id)
+
+    const activity = await Activity.findOrFail(activity_id)
+
+    if (project.user_id !== user.id) {
+      return response.forbidden('Cannot update an activity for others users projects')
+    }
+
+    if(activity.project_id != project_id){
+      return response.badRequest('This activity is not from this project')
+    }
+
+    activity.merge({initial_date: new Date(), status: 'doing'})
+
+    activity.save()
+
+    return activity
+
+  }
+
+  async finish({auth, params, response}){
+    const user = await auth.getUser()
+
+    const { project_id, activity_id } = params
+
+    const project = await Project.findOrFail(project_id)
+
+    const activity = await Activity.findOrFail(activity_id)
+
+    if (project.user_id !== user.id) {
+      return response.forbidden('Cannot update an activity for others users projects')
+    }
+
+    if(activity.project_id != project_id){
+      return response.badRequest('This activity is not from this project')
+    }
+
+    activity.merge({final_date: new Date(), status: 'done'})
+
+    await activity.save()
+
+    return activity
+  }
 }
 
 module.exports = ActivityController
