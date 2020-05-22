@@ -41,6 +41,16 @@ class InterruptionController {
       return response.badRequest('This activity is not from this project')
     }
 
+    if(data.type == 'stop'){
+      activity.status = 'stopped'
+    }
+
+    if(data.type == 'pause'){
+      activity.status = 'paused'
+    }
+
+    activity.save()
+
     data['user_id'] = user.id
     data['activity_id'] = activity_id
 
