@@ -10,13 +10,15 @@ class AllActivitiesController {
     const user = await auth.getUser()
 
     const data = await Activity.query()
-      .where('user_id', user.id)
+      .select('activities.*', 'projects.name as project')
+      .where('activities.user_id', user.id)
       .andWhere(function() {
-        this.whereNull('final_date')
+        this.whereNull('activities.final_date')
       })
       .andWhere(function() {
         this.whereNot({ status: 'done' })
       })
+      .leftJoin('projects', 'projects.id', 'activities.project_id')
       .orderBy('alert_date')
       .paginate(page)
 
