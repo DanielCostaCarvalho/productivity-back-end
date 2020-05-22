@@ -109,12 +109,13 @@ class ActivityController {
       return response.badRequest('This activity is not from this project')
     }
 
-    activity.merge({initial_date: new Date(), status: 'doing'})
+    const initial_date = activity.initial_date || new Date()
+
+    activity.merge({initial_date, status: 'doing'})
 
     activity.save()
 
     return activity
-
   }
 
   async finish({auth, params, response}){
