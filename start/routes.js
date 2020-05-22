@@ -38,6 +38,7 @@ Route.group(() => {
   Route.get('projects/:project_id/activities/doing', 'ActivityDoingController.index')
   Route.get('projects/:project_id/activities/stopped', 'ActivityStoppedController.index')
   Route.get('projects/:project_id/activities/paused', 'ActivityPausedController.index')
+  Route.delete('projects/:project_id/activities/:activity_id', 'ActivityController.destroy')
   Route.put('projects/:project_id/activities/:activity_id/start', 'ActivityController.start')
   Route.put('projects/:project_id/activities/:activity_id/finish', 'ActivityController.finish')
   Route.post('projects/:project_id/activities', 'ActivityController.store')

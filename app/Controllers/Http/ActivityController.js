@@ -141,6 +141,28 @@ class ActivityController {
 
     return activity
   }
+
+  async destroy({auth, params, response}){
+    const user = await auth.getUser()
+
+    const { project_id, activity_id } = params
+
+    const project = await Project.findOrFail(project_id)
+
+    const activity = await Activity.findOrFail(activity_id)
+
+    if (project.user_id !== user.id) {
+      return response.forbidden('Cannot update an activity for others users projects')
+    }
+
+    if(activity.project_id != project_id){
+      return response.badRequest('This activity is not from this project')
+    }
+
+    await activity.delete()
+
+    return { sucess: true }
+  }
 }
 
 module.exports = ActivityController
