@@ -28,6 +28,7 @@ Route.group(() => {
   Route.post('projects', 'ProjectController.store')
     .validator('StoreProject')
   Route.get('projects', 'ProjectController.index')
+  Route.delete('projects/:project_id', 'ProjectController.delete')
   Route.put('projects/:project_id', 'ProjectController.update')
     .validator('UpdateProject')
 

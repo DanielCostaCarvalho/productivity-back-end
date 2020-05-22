@@ -43,6 +43,23 @@ class ProjectController {
     return project
   }
 
+  async delete({ auth, params }) {
+
+    const user = await auth.getUser()
+
+    const { project_id } = params
+
+    const project = await Project.findOrFail(project_id)
+
+    if (project.user_id !== user.id) {
+      return response.forbidden('Cannot create an activity for others users projects')
+    }
+
+
+    await project.delete()
+
+    return { sucess: true }
+  }
 }
 
 module.exports = ProjectController
