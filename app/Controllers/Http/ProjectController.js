@@ -23,6 +23,20 @@ class ProjectController {
     return projects
   }
 
+  async show({ auth, params }) {
+    const user = await auth.getUser()
+
+    const { project_id } = params
+
+    const project = await Project.findOrFail(project_id)
+
+    if (project.user_id !== user.id) {
+      return response.forbidden('Cannot create an activity for others users projects')
+    }
+
+    return project
+  }
+
   async update({ request, auth, params }) {
     const data = request.only(['name', 'description', 'initial_date', 'final_date', 'scope'])
 
